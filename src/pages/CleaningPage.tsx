@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Textfield from "../components/Textfield";
-import Loading from "../components/Loading";
+import LoadingButton from "../components/LoadingButton";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { toastError } from "../components/Toast";
@@ -99,7 +99,7 @@ const CleaningPage: React.FC = () => {
             className="bg-sky-950 hover:bg-sky-700 active:bg-sky-900 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline transition-all duration-300 mb-4 md:mb-0"
             type="submit"
           >
-            {isLoading ? <Loading /> : "Send"}
+            {isLoading ? <LoadingButton /> : "Send"}
           </button>
         </form>
       </div>

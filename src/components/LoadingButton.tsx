@@ -1,4 +1,4 @@
-function Loading() {
+function LoadingButton() {
   return (
     <>
       <div className={`flex items-center justify-center`}>
@@ -28,4 +28,4 @@ function Loading() {
   );
 }
 
-export default Loading;
+export default LoadingButton;

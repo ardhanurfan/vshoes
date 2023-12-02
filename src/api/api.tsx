@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
-// const url = "https://vshoes.ardhanurfan.my.id/";
-const url = "http://127.0.0.1:8000/";
+const url = "https://apivshoes.ardhanurfan.my.id/";
+// const url = "http://127.0.0.1:8000/";
 
 export const post = async (
   api: string,
@@ -22,7 +22,7 @@ export const postWithAuth = async (
   return await axios.post(url + api, form, {
     headers: {
       // Accept: "multipart/form-data",
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/x-www-form-urlencoded",
       Authorization: "Bearer " + token,
     },
   });
@@ -35,7 +35,6 @@ export const postWithAuthJson = async (
 ): Promise<AxiosResponse<any, any>> => {
   return await axios.post(url + api, json, {
     headers: {
-      // Accept: "multipart/form-data",
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,
     },
@@ -56,6 +55,17 @@ export const getWithAuth = async (
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  });
+};
+
+export const deleteWithAuth = async (
+  api: string,
+  token: string
+): Promise<AxiosResponse<any, any>> => {
+  return await axios.delete(url + api, {
+    headers: {
       Authorization: "Bearer " + token,
     },
   });

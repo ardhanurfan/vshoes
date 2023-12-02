@@ -1,5 +1,6 @@
 import { FaCamera } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+import { IoMdAddCircleOutline } from "react-icons/io";
 import { formatRp } from "./FormatRp";
 import { UserContext } from "../context/UserContext";
 import { useContext } from "react";
@@ -8,21 +9,31 @@ const ProductCard = ({
   product,
   onSelect,
   onDelete,
+  onAdd,
 }: {
   product: Product;
   onSelect: (x: Product) => void;
   onDelete: (x: number) => void;
+  onAdd: (x: number) => void;
 }) => {
   const { user } = useContext(UserContext);
 
   return (
     <div className="relative">
       {user?.role == "admin" && (
-        <div
-          onClick={() => onDelete(product.id)}
-          className="text-white text-3xl absolute right-4 top-4 cursor-pointer rounded-full h-8 w-8 bg-red-500 flex justify-center items-center"
-        >
-          <MdDeleteForever />
+        <div className="absolute right-4 top-4">
+          <div
+            onClick={() => onDelete(product.id)}
+            className="mb-2 text-white text-3xl cursor-pointer rounded-full h-8 w-8 bg-red-500 hover:bg-red-700 active:bg-red-900 flex justify-center items-center"
+          >
+            <MdDeleteForever />
+          </div>
+          <div
+            onClick={() => onAdd(product.id)}
+            className="text-white text-3xl cursor-pointer rounded-full h-8 w-8 bg-blue-500 hover:bg-blue-700 active:bg-blue-900 flex justify-center items-center"
+          >
+            <IoMdAddCircleOutline />
+          </div>
         </div>
       )}
       <div
@@ -64,6 +75,8 @@ const ProductCard = ({
                       ? "bg-green-500"
                       : varian.color == "blue"
                       ? "bg-blue-500"
+                      : varian.color == "gray"
+                      ? "bg-gray-500"
                       : varian.color == "yellow"
                       ? "bg-yellow-500"
                       : ""

@@ -3,7 +3,7 @@ import Textfield from "../components/Textfield";
 import { useState } from "react";
 import { post } from "../api/api";
 import { toastError, toastSuccess } from "../components/Toast";
-import Loading from "../components/Loading";
+import LoadingButton from "../components/LoadingButton";
 
 const Register = () => {
   const [fullname, setFullname] = useState<string>("");
@@ -94,7 +94,7 @@ const Register = () => {
               className="bg-sky-950 hover:bg-sky-700 active:bg-sky-900 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline transition-all duration-300 mb-4 md:mb-0"
               type="submit"
             >
-              {isLoading ? <Loading /> : "Sign Up"}
+              {isLoading ? <LoadingButton /> : "Sign Up"}
             </button>
             <Link
               className="inline-block align-baseline font-bold text-sm text-slate-500 hover:text-red-300 transition-all duration-300"

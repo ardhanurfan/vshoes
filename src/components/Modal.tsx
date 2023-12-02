@@ -28,7 +28,7 @@ function Modal({
       <div className="max-h-[95%] w-[90%] overflow-auto rounded-lg bg-white px-7 py-4 md:w-4/5 xl:w-1/2 xl:px-16 xl:py-7 relative">
         <div
           onClick={onClose}
-          className="text-red-500 text-3xl absolute right-4 top-4 cursor-pointer z-50"
+          className="text-red-500 hover:text-red-700 active:text-red-900 text-3xl absolute right-4 top-4 cursor-pointer z-50"
         >
           <IoCloseCircle />
         </div>

@@ -16,7 +16,7 @@ function BrandCard({
       {user?.role == "admin" && (
         <div
           onClick={() => onDelete(brand.id)}
-          className="text-white text-3xl absolute right-4 top-4 cursor-pointer rounded-full h-8 w-8 bg-red-500 flex justify-center items-center"
+          className="text-white text-3xl absolute right-4 top-4 cursor-pointer rounded-full h-8 w-8 bg-red-500 hover:bg-red-700 active:bg-red-900 flex justify-center items-center"
         >
           <MdDeleteForever />
         </div>

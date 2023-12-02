@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 // import { getWithAuth } from "../api/api";
 import { toastError, toastSuccess } from "./Toast";
-import Loading from "./Loading";
 import { UserContext } from "../context/UserContext";
+import LoadingButton from "./LoadingButton";
 
 function Header({ onSearch }: { onSearch: (x: string) => void }) {
   const navigator = useNavigate();
@@ -55,7 +55,7 @@ function Header({ onSearch }: { onSearch: (x: string) => void }) {
           className="text-red-500 hover:bg-red-500 hover:text-white px-6 py-2 rounded-full font-bold active:bg-opacity-50 transition-all duration-300 flex gap-2 justify-center items-center"
         >
           {isLoading ? (
-            <Loading />
+            <LoadingButton />
           ) : (
             <>
               <div className="text-2xl">
