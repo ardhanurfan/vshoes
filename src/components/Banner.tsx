@@ -1,5 +1,6 @@
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { MdOutlineCleanHands } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -12,14 +13,20 @@ const Banner = () => {
         style.
       </p>
       <div className="flex gap-4 flex-col md:flex-row">
-        <button className="bg-white text-gray-900 px-6 py-3 mt-8 rounded-full font-bold hover:bg-opacity-80 active:bg-opacity-50 transition-all duration-300 flex gap-2 justify-center items-center">
+        <Link
+          to={"/cleaning"}
+          className="bg-white text-gray-900 px-6 py-3 mt-8 rounded-full font-bold hover:bg-opacity-80 active:bg-opacity-50 transition-all duration-300 flex gap-2 justify-center items-center"
+        >
           <FaChalkboardTeacher />
           Consultation
-        </button>
-        <button className="bg-white text-gray-900 px-6 py-3 mt-8 rounded-full font-bold hover:bg-opacity-80 active:bg-opacity-50 transition-all duration-300 flex gap-2 justify-center items-center">
+        </Link>
+        <Link
+          to={"/cleaning"}
+          className="bg-white text-gray-900 px-6 py-3 mt-8 rounded-full font-bold hover:bg-opacity-80 active:bg-opacity-50 transition-all duration-300 flex gap-2 justify-center items-center"
+        >
           <MdOutlineCleanHands />
           Shoes Cleaner
-        </button>
+        </Link>
       </div>
     </div>
   );

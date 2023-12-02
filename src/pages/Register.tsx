@@ -33,7 +33,7 @@ const Register = () => {
       navigator("/login");
       toastSuccess("Register successfuly");
     } catch (error) {
-      toastError("Check your input");
+      toastError((error as any).response.data.detail);
     } finally {
       setIsLoading(false);
     }

@@ -1,31 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { getWithAuth } from "../api/api";
+// import { getWithAuth } from "../api/api";
 import { toastError, toastSuccess } from "./Toast";
 import Loading from "./Loading";
+import { UserContext } from "../context/UserContext";
 
 function Header({ onSearch }: { onSearch: (x: string) => void }) {
   const navigator = useNavigate();
-  const [user, setUser] = useState<User>();
-
-  const token = Cookies.get("token_vshoes");
-  const getUser = async () => {
-    if (token) {
-      try {
-        const response = await getWithAuth(token, "users/me");
-        const data = response.data?.data;
-        setUser(data);
-      } catch (error) {
-        toastError("Get User Failed");
-      }
-    }
-  };
-  useEffect(() => {
-    getUser();
-  }, []);
+  const { user } = useContext(UserContext);
 
   const [isLoading, setIsLoading] = useState(false);
   const handleLogOut = async () => {

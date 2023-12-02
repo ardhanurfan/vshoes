@@ -26,7 +26,7 @@ const Login = () => {
       navigator("/");
       toastSuccess("Login successfuly");
     } catch (error) {
-      toastError("Invalid credentials");
+      toastError((error as any).response.data.detail);
     } finally {
       setIsLoading(false);
     }
