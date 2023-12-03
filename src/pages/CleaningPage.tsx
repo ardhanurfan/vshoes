@@ -6,13 +6,17 @@ import { Link } from "react-router-dom";
 import { toastError } from "../components/Toast";
 import { postWithAuth } from "../api/api";
 import Cookies from "js-cookie";
+import Dropdown from "../components/Dropdown";
 
 const CleaningPage: React.FC = () => {
   const [consultationResult, setConsultationResult] = useState<string | null>(
     null
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [shoetype, setshoetype] = useState<string>("");
+  const [shoetype, setshoetype] = useState<{
+    label: string;
+    value: string;
+  }>();
   const [shoesize, setshoesize] = useState<string>("");
   const [shoecolor, setshoecolor] = useState<string>("");
   const [shoebrand, setshoebrand] = useState<string>("");
@@ -28,7 +32,7 @@ const CleaningPage: React.FC = () => {
       const response = await postWithAuth(
         "cleaner",
         {
-          shoetype: shoetype,
+          shoetype: shoetype?.value.toLowerCase(),
           shoesize: shoesize,
           shoecolor: shoecolor,
           shoebrand: shoebrand,
@@ -66,9 +70,15 @@ const CleaningPage: React.FC = () => {
             by Shoes Wizard Co.
           </h2>
           <div className="mb-4">
-            <Textfield
+            <Dropdown
+              isLabel
               label={"Shoes Type"}
-              onChange={(val) => setshoetype(val.target.value)}
+              onChange={(val) => setshoetype(val!)}
+              options={["Sneakers", "Loafers", "Flip-Flops"].map(
+                (color: string) => {
+                  return { value: color, label: color };
+                }
+              )}
             />
           </div>
           <div className="mb-4">

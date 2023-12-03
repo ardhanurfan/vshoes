@@ -41,7 +41,7 @@ function Root() {
       <Route path="*" element={<Dummy title={"Not Found"} />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/cleaning" element={<CleaningPage />} />
+        <Route path="/cleaner" element={<CleaningPage />} />
       </Route>
     </Routes>
   );
