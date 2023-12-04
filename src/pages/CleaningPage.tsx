@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Textfield from "../components/Textfield";
 import LoadingButton from "../components/LoadingButton";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { toastError } from "../components/Toast";
-import { postWithAuth } from "../api/api";
+import { getWithAuth, postWithAuth } from "../api/api";
 import Cookies from "js-cookie";
 import Dropdown from "../components/Dropdown";
+import { formatRp } from "../components/FormatRp";
 
 const CleaningPage: React.FC = () => {
   const [consultationResult, setConsultationResult] = useState<string | null>(
@@ -21,6 +22,8 @@ const CleaningPage: React.FC = () => {
   const [shoecolor, setshoecolor] = useState<string>("");
   const [shoebrand, setshoebrand] = useState<string>("");
   const [condition, setcondition] = useState<string>("");
+
+  const [cleaner, setCleaner] = useState<Cleaner[]>([]);
 
   const token = Cookies.get("token_vshoes");
   const handleConsultationSubmit = async (
@@ -49,11 +52,35 @@ const CleaningPage: React.FC = () => {
     }
   };
 
+  const getCleaner = async () => {
+    if (token) {
+      try {
+        const response = await getWithAuth(token, "cleaner");
+        const data = response.data?.data as [][];
+        setCleaner(
+          data.map((value: any[]) => {
+            return {
+              title: value[1],
+              price: value[3],
+              category: value[5],
+              desc: value[2],
+            };
+          })
+        );
+      } catch (error) {
+        toastError("Get Brands Failed");
+      }
+    }
+  };
+  useEffect(() => {
+    getCleaner();
+  }, []);
+
   return (
     <div className="flex flex-col md:flex-row h-screen">
       <Link
         to={"/"}
-        className="absolute bg-white top-4 left-4 text-red-500 hover:bg-red-500 hover:text-white px-6 py-2 rounded-full font-bold active:bg-opacity-50 transition-all duration-300 flex gap-2 justify-center items-center"
+        className="absolute z-50 bg-white top-4 left-4 text-red-500 hover:bg-red-500 hover:text-white px-6 py-2 rounded-full font-bold active:bg-opacity-50 transition-all duration-300 flex gap-2 justify-center items-center"
       >
         <div className="text-2xl">
           <IoArrowBackCircleOutline />
@@ -113,8 +140,8 @@ const CleaningPage: React.FC = () => {
           </button>
         </form>
       </div>
-      <div className="md:w-1/2 p-8 flex justify-center items-center">
-        <div>
+      <div className="md:w-1/2 p-8 flex justify-center items-center flex-col">
+        <div className="mb-10">
           {consultationResult ? (
             <>
               <h2 className="text-sky-950 text-4xl mb-6 font-bold">
@@ -133,6 +160,24 @@ const CleaningPage: React.FC = () => {
               className="md:max-w-md xl:max-w-lg rounded-lg shadow-lg transition-shadow"
             />
           )}
+        </div>
+        <div className="flex gap-2 flex-wrap justify-center px-20">
+          {cleaner.map((cleaner: Cleaner) => (
+            <div className="w-40 p-2 bg-white shadow-lg text-[12px] rounded-md group relative">
+              <p className="text-sky-950 font-bold text-[16px] group-hover:blur-md duration-300 ease-in-out">
+                {cleaner.title}
+              </p>
+              <p className="text-orange-500 group-hover:blur-md duration-300 ease-in-out">
+                {formatRp(cleaner.price)}
+              </p>
+              <p className="group-hover:blur-md duration-300 ease-in-out">
+                {cleaner.category}
+              </p>
+              <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sky-950 w-full text-center p-2 font-medium opacity-0 group-hover:opacity-100 duration-300 ease-in-out">
+                {cleaner.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

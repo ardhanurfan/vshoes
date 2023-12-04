@@ -35,7 +35,7 @@ function Header({ onSearch }: { onSearch: (x: string) => void }) {
             className="h-12 w-12 shrink-0 rounded-full"
             alt="Profile"
           />
-          <p className="ml-3 w-[120px] overflow-hidden text-ellipsis whitespace-nowrap text-[16px] font-bold text-purple-primary xl:group-hover:text-orange-primary">
+          <p className="ml-3 w-[130px] overflow-hidden text-ellipsis whitespace-nowrap text-[16px] font-bold text-purple-primary xl:group-hover:text-orange-primary">
             {user?.fullname}
           </p>
         </div>
