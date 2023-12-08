@@ -1,0 +1,51 @@
+├── index.html
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── public
+│  ├── background_login.jpg
+│  ├── banner.jpg
+│  ├── cleaning.jpg
+│  ├── logo.png
+│  ├── sepatu_login.jpg
+│  └── vite.svg
+├── README.md
+├── src
+│  ├── api
+│  │  └── api.tsx
+│  ├── App.tsx
+│  ├── components
+│  │  ├── Banner.tsx
+│  │  ├── BrandCard.tsx
+│  │  ├── Dropdown.tsx
+│  │  ├── Footer.tsx
+│  │  ├── FormatRp.tsx
+│  │  ├── Header.tsx
+│  │  ├── LoadingButton.tsx
+│  │  ├── LoadingPage.tsx
+│  │  ├── Modal.tsx
+│  │  ├── ProductCard.tsx
+│  │  ├── ProductDetail.tsx
+│  │  ├── Textfield.tsx
+│  │  └── Toast.tsx
+│  ├── context
+│  │  └── UserContext.tsx
+│  ├── index.css
+│  ├── interfaces
+│  │  ├── Brand.ts
+│  │  ├── Cleaner.ts
+│  │  ├── Product.ts
+│  │  ├── User.ts
+│  │  └── Varian.ts
+│  ├── main.tsx
+│  ├── pages
+│  │  ├── CleaningPage.tsx
+│  │  ├── LandingPage.tsx
+│  │  ├── Login.tsx
+│  │  └── Register.tsx
+│  └── vite-env.d.ts
+├── tailwind.config.js
+├── tsconfig.json
+├── tsconfig.node.json
+├── vercel.json
+└── vite.config.ts
